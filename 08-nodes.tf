@@ -20,10 +20,9 @@ resource "aws_iam_role_policy_attachment" "amazon_eks_worker_node_policy" {
   role       = aws_iam_role.nodes.name
 }
 
-resource "aws_iam_policy_attachment" "amazon_eks_cni_policy" {
-  name       = "${local.env}-${local.eks_name}-amazon-eks-cni-policy"
+resource "aws_iam_role_policy_attachment" "amazon_eks_cni_policy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
-  roles      = aws_iam_role.nodes.name
+  role      = aws_iam_role.nodes.name
 }
 
 resource "aws_iam_role_policy_attachment" "amazon_ec2_container_registry_read_only" {
@@ -61,7 +60,7 @@ resource "aws_eks_node_group" "general" {
 
     depends_on = [ 
         aws_iam_role_policy_attachment.amazon_ec2_container_registry_read_only,
-        aws_iam_policy_attachment.amazon_eks_cni_policy,
+        aws_iam_role_policy_attachment.amazon_eks_cni_policy,
         aws_iam_role_policy_attachment.amazon_eks_worker_node_policy,
      ]
 
