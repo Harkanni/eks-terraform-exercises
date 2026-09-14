@@ -1,0 +1,28 @@
+# Local directory for data source and variable files
+*.tfstate
+*.tfstate.backup
+*.tfstate.*.backup
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Exclude all .tfvars files (They often contain secrets like passwords or API keys)
+*.tfvars
+*.tfvars.json
+
+# Ignore override files as they are meant for local testing only
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Include override files for the user layout if necessary
+.terraformrc
+terraform.rc
+
+# Ignore the giant local .terraform directory (This holds downloaded providers and modules)
+.terraform/
+
+# Ignore CLI configuration files
+.terraform.lock.hcl
