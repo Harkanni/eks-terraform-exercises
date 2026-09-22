@@ -57,7 +57,7 @@ resource "aws_eks_pod_identity_association" "cluster_autoscaler" {
 
 
 resource "helm_release" "cluster_autoscaler" {
-  name       = "cluster-autoscaler"
+  name       = "autoscaler"
   repository = "https://kubernetes.github.io/autoscaler"
   chart      = "cluster-autoscaler"
   namespace  = "kube-system"
@@ -75,22 +75,6 @@ resource "helm_release" "cluster_autoscaler" {
       name  = "awsRegion"
       value = local.region
     },
-    {
-      name  = "rbac.serviceAccount.create"
-      value = false
-    },
-    {
-      name  = "rbac.serviceAccount.name"
-      value = "cluster-autoscaler"
-    },
-    {
-      name  = "extraArgs.skip-nodes-with-local-storage"
-      value = "false"
-    },
-    {
-      name  = "extraArgs.expander"
-      value = "least-waste"
-    }
   ]
 
   depends_on = [helm_release.metrics_server]
