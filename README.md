@@ -46,3 +46,6 @@ kubectl port-forward svc/myapp 8080 -n -3-example
 
 #4. CLUSTER AUTOSCALER AND EKS POD IDENTITY
 aws eks describe-addon-versions --region us-east-2 --addon-name eks-pod-identity-agent
+kubectl get pods -n kube-system
+kubectl get daemonset eks-pod-identity-agent -n kube-system 
+# (without the agent running you wont e able to auth your client with aws service)
