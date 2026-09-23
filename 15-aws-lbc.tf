@@ -50,7 +50,7 @@ resource "helm_release" "aws_lbc" {
     },
     {
       name  = "vpcId"
-      value = aws_vpc.main.id   # use your actual VPC resource reference
+      value = aws_vpc.eks_main_vpc.id
     },
     {
       name  = "serviceAccount.name"
