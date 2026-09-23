@@ -49,6 +49,10 @@ resource "helm_release" "aws_lbc" {
       value = aws_eks_cluster.eks.name
     },
     {
+      name  = "vpcId"
+      value = aws_vpc.main.id   # use your actual VPC resource reference
+    },
+    {
       name  = "serviceAccount.name"
       value = "aws-load-balancer-controller"
     },
